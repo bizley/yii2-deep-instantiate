@@ -9,7 +9,7 @@ This package provides Yii 2 Dependency Injector Container capable of automatical
 
 ### Requirements
 
-- Yii 2.0.11+
+- Yii 2.0.39.3+
 - PHP 7.0+
 
 ### Installation

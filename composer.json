@@ -21,13 +21,13 @@
   ],
   "require": {
     "php": ">=7.0",
-    "yiisoft/yii2": "^2.0.11"
+    "yiisoft/yii2": "^2.0.39.3"
   },
   "require-dev": {
     "infection/infection": "*",
     "phpstan/phpstan": "*",
-    "phpunit/phpunit": "^6.5",
-    "roave/security-advisories": "dev-master"
+    "phpunit/phpunit": "^6.5"
+
   },
   "autoload": {
     "psr-4": {
