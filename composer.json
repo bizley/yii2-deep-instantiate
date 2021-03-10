@@ -1,0 +1,48 @@
+{
+  "name": "bizley/deep-instantiate",
+  "description": "Deep Instantiator for Yii 2.",
+  "type": "yii2-extension",
+  "keywords": ["yii2", "di", "dependency injection"],
+  "license": "BSD-3",
+  "authors": [
+    {
+      "name": "Paweł Bizley Brzozowski",
+      "email": "pawel@positive.codes"
+    }
+  ],
+  "support": {
+    "source": "https://github.com/bizley/yii2-deep-instantiate"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/bizley"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "yiisoft/yii2": "*"
+  },
+  "require-dev": {
+    "infection/infection": "*",
+    "phpstan/phpstan": "*",
+    "phpunit/phpunit": "^6.5",
+    "roave/security-advisories": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "bizley\\deepinstantiate\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "bizley\\tests\\": "tests/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
+}
