@@ -3,7 +3,7 @@
   "description": "Deep Instantiator for Yii 2.",
   "type": "yii2-extension",
   "keywords": ["yii2", "di", "dependency injection"],
-  "license": "BSD-3",
+  "license": "BSD-2.0",
   "authors": [
     {
       "name": "Paweł Bizley Brzozowski",
