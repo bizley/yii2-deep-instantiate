@@ -1,4 +1,4 @@
-name: Mutation testing
+name: Mutation Testing
 
 on:
   pull_request:
