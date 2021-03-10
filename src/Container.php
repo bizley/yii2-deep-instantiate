@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace bizley\deepinstantiate;
+namespace Bizley\DeepInstantiate;
 
 use ReflectionClass;
 use ReflectionException;
@@ -43,8 +43,8 @@ class Container extends \yii\di\Container
      * This method will resolve dependencies of the specified class, instantiate them, and inject
      * them into the new instance of the specified class.
      * @param string $class the class name
-     * @param array $params constructor parameters
-     * @param array $config configurations to be applied to the new instance
+     * @param array<string|int, mixed> $params constructor parameters
+     * @param array<string|int, mixed> $config configurations to be applied to the new instance
      * @return object the newly created instance of the specified class
      * @throws InvalidConfigException
      * @throws NotInstantiableException If resolved to an abstract class or an interface (since Yii 2.0.9)
@@ -52,7 +52,7 @@ class Container extends \yii\di\Container
      */
     protected function build($class, $params, $config)
     {
-        /** @var ReflectionClass $reflection */
+        /** @var ReflectionClass<object> $reflection */
         list($reflection, $dependencies) = $this->getDependencies($class);
 
         $addDependencies = [];

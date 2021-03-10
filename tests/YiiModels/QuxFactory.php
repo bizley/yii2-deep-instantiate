@@ -1,8 +1,8 @@
 <?php
 
-namespace bizley\tests\yiimodels;
+namespace Bizley\Tests\YiiModels;
 
-use bizley\deepinstantiate\Container;
+use Bizley\DeepInstantiate\Container;
 use yii\base\BaseObject;
 
 /**

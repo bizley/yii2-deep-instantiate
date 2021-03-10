@@ -1,6 +1,6 @@
 <?php
 
-namespace bizley\tests;
+namespace Bizley\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Yii;

@@ -1,6 +1,6 @@
 <?php
 
-namespace bizley\tests\yiimodels;
+namespace Bizley\Tests\YiiModels;
 
 use yii\base\BaseObject;
 

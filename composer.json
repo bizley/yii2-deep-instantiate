@@ -31,12 +31,12 @@
   },
   "autoload": {
     "psr-4": {
-      "bizley\\deepinstantiate\\": "src/"
+      "Bizley\\DeepInstantiate\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "bizley\\tests\\": "tests/"
+      "Bizley\\Tests\\": "tests/"
     }
   },
   "repositories": [

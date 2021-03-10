@@ -4,8 +4,8 @@
  * Test class from Yii test suite.
  */
 
-use bizley\deepinstantiate\Container;
-use bizley\tests\yiimodels\QuxInterface;
+use Bizley\DeepInstantiate\Container;
+use Bizley\Tests\YiiModels\QuxInterface;
 
 $container = new Container();
 $func = function (QuxInterface ...$quxes) {

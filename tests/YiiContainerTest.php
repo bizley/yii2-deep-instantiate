@@ -1,25 +1,25 @@
 <?php
 
-namespace bizley\tests;
+namespace Bizley\Tests;
 
-use bizley\deepinstantiate\Container;
-use bizley\tests\yiimodels\Alpha;
-use bizley\tests\yiimodels\Bar;
-use bizley\tests\yiimodels\BarSetter;
-use bizley\tests\yiimodels\Beta;
-use bizley\tests\yiimodels\Car;
-use bizley\tests\yiimodels\Cat;
-use bizley\tests\yiimodels\Corge;
-use bizley\tests\yiimodels\Foo;
-use bizley\tests\yiimodels\FooProperty;
-use bizley\tests\yiimodels\Kappa;
-use bizley\tests\yiimodels\Order;
-use bizley\tests\yiimodels\Qux;
-use bizley\tests\yiimodels\QuxFactory;
-use bizley\tests\yiimodels\QuxInterface;
-use bizley\tests\yiimodels\Type;
-use bizley\tests\yiimodels\Variadic;
-use bizley\tests\yiimodels\Zeta;
+use Bizley\DeepInstantiate\Container;
+use Bizley\Tests\YiiModels\Alpha;
+use Bizley\Tests\YiiModels\Bar;
+use Bizley\Tests\YiiModels\BarSetter;
+use Bizley\Tests\YiiModels\Beta;
+use Bizley\Tests\YiiModels\Car;
+use Bizley\Tests\YiiModels\Cat;
+use Bizley\Tests\YiiModels\Corge;
+use Bizley\Tests\YiiModels\Foo;
+use Bizley\Tests\YiiModels\FooProperty;
+use Bizley\Tests\YiiModels\Kappa;
+use Bizley\Tests\YiiModels\Order;
+use Bizley\Tests\YiiModels\Qux;
+use Bizley\Tests\YiiModels\QuxFactory;
+use Bizley\Tests\YiiModels\QuxInterface;
+use Bizley\Tests\YiiModels\Type;
+use Bizley\Tests\YiiModels\Variadic;
+use Bizley\Tests\YiiModels\Zeta;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\di\Instance;
@@ -137,17 +137,17 @@ class YiiContainerTest extends YiiTestCase
         $this->mockApplication([
             'components' => [
                 'qux' => [
-                    'class' => 'bizley\tests\yiimodels\Qux',
+                    'class' => 'Bizley\Tests\YiiModels\Qux',
                     'a' => 'belongApp',
                 ],
                 'qux2' => [
-                    'class' => 'bizley\tests\yiimodels\Qux',
+                    'class' => 'Bizley\Tests\YiiModels\Qux',
                     'a' => 'belongAppQux2',
                 ],
             ],
         ]);
-        Yii::$container->set('bizley\tests\yiimodels\QuxInterface', [
-            'class' => 'bizley\tests\yiimodels\Qux',
+        Yii::$container->set('Bizley\Tests\YiiModels\QuxInterface', [
+            'class' => 'Bizley\Tests\YiiModels\Qux',
             'a' => 'independent',
         ]);
 
@@ -202,11 +202,11 @@ class YiiContainerTest extends YiiTestCase
         $this->mockApplication([
             'components' => [
                 'qux' => [
-                    'class' => 'bizley\tests\yiimodels\Qux',
+                    'class' => 'Bizley\Tests\YiiModels\Qux',
                     'a' => 'belongApp',
                 ],
                 'qux2' => [
-                    'class' => 'bizley\tests\yiimodels\Qux',
+                    'class' => 'Bizley\Tests\YiiModels\Qux',
                     'a' => 'belongAppQux2',
                 ],
             ],
@@ -223,11 +223,11 @@ class YiiContainerTest extends YiiTestCase
         $this->mockApplication([
             'components' => [
                 'qux' => [
-                    'class' => 'bizley\tests\yiimodels\Qux',
+                    'class' => 'Bizley\Tests\YiiModels\Qux',
                     'a' => 'belongApp',
                 ],
                 'qux2' => [
-                    'class' => 'bizley\tests\yiimodels\Qux',
+                    'class' => 'Bizley\Tests\YiiModels\Qux',
                     'a' => 'belongAppQux2',
                 ],
             ],
@@ -257,7 +257,7 @@ class YiiContainerTest extends YiiTestCase
             'model.order' => Order::class,
             Cat::class => Type::class,
             'test\TraversableInterface' => [
-                ['class' => 'bizley\tests\yiimodels\TraversableObject'],
+                ['class' => 'Bizley\Tests\YiiModels\TraversableObject'],
                 [['item1', 'item2']],
             ],
             'qux.using.closure' => function () {
@@ -272,10 +272,10 @@ class YiiContainerTest extends YiiTestCase
         self::assertInstanceOf(Type::class, $container->get(Cat::class));
 
         $traversable = $container->get('test\TraversableInterface');
-        self::assertInstanceOf('bizley\tests\yiimodels\TraversableObject', $traversable);
+        self::assertInstanceOf('Bizley\Tests\YiiModels\TraversableObject', $traversable);
         self::assertEquals('item1', $traversable->current());
 
-        self::assertInstanceOf('bizley\tests\yiimodels\Qux', $container->get('qux.using.closure'));
+        self::assertInstanceOf('Bizley\Tests\YiiModels\Qux', $container->get('qux.using.closure'));
 
         try {
             $container->get('rollbar');
@@ -314,7 +314,7 @@ class YiiContainerTest extends YiiTestCase
         $container = new Container();
         $container->setDefinitions([
             'test\TraversableInterface' => [
-                '__class' => 'bizley\tests\yiimodels\TraversableObject',
+                '__class' => 'Bizley\Tests\YiiModels\TraversableObject',
                 '__construct()' => [['item1', 'item2']],
             ],
             'qux' => [
@@ -328,7 +328,7 @@ class YiiContainerTest extends YiiTestCase
         self::assertSame(42, $qux->a);
 
         $traversable = $container->get('test\TraversableInterface');
-        self::assertInstanceOf('bizley\tests\yiimodels\TraversableObject', $traversable);
+        self::assertInstanceOf('Bizley\Tests\YiiModels\TraversableObject', $traversable);
         self::assertEquals('item1', $traversable->current());
     }
 
@@ -356,7 +356,7 @@ class YiiContainerTest extends YiiTestCase
 
     public function testReferencesInArrayInDependencies()
     {
-        $quxInterface = 'bizley\tests\yiimodels\QuxInterface';
+        $quxInterface = 'Bizley\Tests\YiiModels\QuxInterface';
         $container = new Container();
         $container->resolveArrays = true;
         $container->setSingletons([
@@ -448,7 +448,7 @@ class YiiContainerTest extends YiiTestCase
         $container->setSingletons([
             'model.order' => Order::class,
             'test\TraversableInterface' => [
-                ['class' => 'bizley\tests\yiimodels\TraversableObject'],
+                ['class' => 'Bizley\Tests\YiiModels\TraversableObject'],
                 [['item1', 'item2']],
             ],
             'qux.using.closure' => function () {
@@ -473,7 +473,7 @@ class YiiContainerTest extends YiiTestCase
     public function testVariadicConstructor()
     {
         $container = new Container();
-        self::assertInstanceOf(Variadic::class, $container->get('bizley\tests\yiimodels\Variadic'));
+        self::assertInstanceOf(Variadic::class, $container->get('Bizley\Tests\YiiModels\Variadic'));
     }
 
     /**
@@ -522,7 +522,7 @@ class YiiContainerTest extends YiiTestCase
         self::assertInstanceOf(Beta::class, $alpha->beta);
         self::assertNull($alpha->omega);
 
-        $QuxInterface = 'bizley\tests\yiimodels\QuxInterface';
+        $QuxInterface = 'Bizley\Tests\YiiModels\QuxInterface';
         $container = new Container();
         $container->set($QuxInterface, Qux::class);
         $alpha = $container->get(Alpha::class);
@@ -532,9 +532,9 @@ class YiiContainerTest extends YiiTestCase
         self::assertNull($alpha->color);
 
         $container = new Container();
-        $container->set('bizley\tests\yiimodels\AbstractColor', 'bizley\tests\yiimodels\Color');
+        $container->set('Bizley\Tests\YiiModels\AbstractColor', 'Bizley\Tests\YiiModels\Color');
         $alpha = $container->get(Alpha::class);
-        self::assertInstanceOf('bizley\tests\yiimodels\Color', $alpha->color);
+        self::assertInstanceOf('Bizley\Tests\YiiModels\Color', $alpha->color);
     }
 
     public function testNamedConstructorParameters()
