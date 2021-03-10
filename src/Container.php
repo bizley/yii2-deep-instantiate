@@ -2,10 +2,20 @@
 
 declare(strict_types=1);
 
+namespace bizley\deepinstantiate;
+
+use ReflectionClass;
+use ReflectionException;
 use yii\base\Configurable;
 use yii\base\InvalidConfigException;
 use yii\di\Instance;
 use yii\di\NotInstantiableException;
+
+use function array_values;
+use function count;
+use function is_int;
+use function is_string;
+use function key;
 
 class Container extends \yii\di\Container
 {
@@ -37,7 +47,7 @@ class Container extends \yii\di\Container
      * @param array $config configurations to be applied to the new instance
      * @return object the newly created instance of the specified class
      * @throws InvalidConfigException
-     * @throws NotInstantiableException If resolved to an abstract class or an interface (since 2.0.9)
+     * @throws NotInstantiableException If resolved to an abstract class or an interface (since Yii 2.0.9)
      * @throws ReflectionException
      */
     protected function build($class, $params, $config)
