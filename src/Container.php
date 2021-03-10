@@ -64,25 +64,23 @@ class Container extends \yii\di\Container
             $addDependencies[$index] = $param;
         }
 
-        $hasStringParameter = false;
-        $hasIntParameter = false;
+        $hasStringIndex = null;
         foreach ($addDependencies as $index => $parameter) {
             if (is_string($index)) {
-                $hasStringParameter = true;
-                if ($hasIntParameter) {
-                    break;
+                if ($hasStringIndex === false) {
+                    throw new InvalidConfigException(
+                        'Dependencies indexed by name and by position in the same array are not allowed.'
+                    );
                 }
+                $hasStringIndex = true;
             } else {
-                $hasIntParameter = true;
-                if ($hasStringParameter) {
-                    break;
+                if ($hasStringIndex === true) {
+                    throw new InvalidConfigException(
+                        'Dependencies indexed by name and by position in the same array are not allowed.'
+                    );
                 }
+                $hasStringIndex = false;
             }
-        }
-        if ($hasIntParameter && $hasStringParameter) {
-            throw new InvalidConfigException(
-                'Dependencies indexed by name and by position in the same array are not allowed.'
-            );
         }
 
         if ($addDependencies && is_int(key($addDependencies))) {
