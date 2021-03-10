@@ -8,7 +8,7 @@ on:
 
 jobs:
   Tests:
-    name: PHP ${{ matrix.php }} + SQLite
+    name: PHP ${{ matrix.php }} + PHPUnit
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
