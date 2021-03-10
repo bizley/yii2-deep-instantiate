@@ -83,7 +83,7 @@ class YiiContainerTest extends YiiTestCase
         // wiring by closure which uses container
         $container = new Container();
         $container->set(QuxInterface::class, $Qux);
-        $container->set('foo', function (Container $c, $params, $config) {
+        $container->set('foo', function (Container $c) {
             return $c->get(Foo::class);
         });
         $foo = $container->get('foo');

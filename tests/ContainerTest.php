@@ -24,24 +24,28 @@ class ContainerTest extends TestCase
     public function testInterfaceTypedArgumentIntKey()
     {
         $bar = (new Container())->get(Bar::class, [Qux::class]);
+        self::assertInstanceOf(Bar::class, $bar);
         self::assertInstanceOf(Qux::class, $bar->qux);
     }
 
     public function testInterfaceTypedArgumentStringKey()
     {
         $bar = (new Container())->get(Bar::class, ['qux' => Qux::class]);
+        self::assertInstanceOf(Bar::class, $bar);
         self::assertInstanceOf(Qux::class, $bar->qux);
     }
 
     public function testInterfaceTypedOptionalArgumentStringKey()
     {
         $alpha = (new Container())->get(Alpha::class, ['omega' => Qux::class]);
+        self::assertInstanceOf(Alpha::class, $alpha);
         self::assertInstanceOf(Qux::class, $alpha->omega);
     }
 
     public function testNonTypedArgumentStringKey()
     {
         $car = (new Container())->get(Car::class, ['color' => Qux::class]);
+        self::assertInstanceOf(Car::class, $car);
         self::assertSame(Qux::class, $car->color);
     }
 
@@ -56,60 +60,37 @@ class ContainerTest extends TestCase
                 ]
             ]
         );
+        self::assertInstanceOf(Foo::class, $foo);
         self::assertInstanceOf(Bar::class, $foo->bar);
         self::assertInstanceOf(Qux::class, $foo->bar->qux);
     }
 
-    public function testInterfaceTypedArgumentIntKeyDependencyPreset()
+    public function testInterfaceTypedArgumentIntKeyDependencyPresetButIgnored()
     {
         $c = new Container();
         $c->set('Bizley\Tests\YiiModels\QuxInterface', Qux::class);
         $bar = $c->get(Bar::class, [Qux::class]);
+        self::assertInstanceOf(Bar::class, $bar);
         self::assertInstanceOf(Qux::class, $bar->qux);
     }
 
     public function testInterfaceTypedArgumentIntKeyDependencyBuilt()
     {
         $bar = (new Container())->get(Bar::class, [new Qux()]);
+        self::assertInstanceOf(Bar::class, $bar);
         self::assertInstanceOf(Qux::class, $bar->qux);
     }
 
     public function testInterfaceTypedArgumentIntKeyDependencyInstanceOf()
     {
         $bar = (new Container())->get(Bar::class, [Instance::of(Qux::class)]);
+        self::assertInstanceOf(Bar::class, $bar);
         self::assertInstanceOf(Qux::class, $bar->qux);
     }
 
     public function testDeepInstantiating()
     {
-        $a = (new Container())->get(
-            A::class,
-            [
-                'b' => [
-                    'class' => B::class,
-                    '__construct()' => [
-                        'c' => [
-                            'class' => C::class,
-                            '__construct()' => [
-                                'd' => [
-                                    'class' => D::class,
-                                    '__construct()' => [
-                                        'e' => [
-                                            'class' => E::class,
-                                            '__construct()' => [
-                                                'f' => [
-                                                    'class' => F::class,
-                                                ],
-                                            ],
-                                        ],
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ]
-        );
+        $a = (new Container())->get(A::class);
         self::assertInstanceOf(A::class, $a);
         self::assertInstanceOf(B::class, $a->b);
         self::assertInstanceOf(C::class, $a->b->c);
@@ -127,7 +108,7 @@ class ContainerTest extends TestCase
 
     public function testWithParamsAndSimpleConfiguration()
     {
-        $e = (new Container())->get(E::class, [F::class], ['prop' => 9]);
+        $e = (new Container())->get(E::class, [], ['prop' => 9]);
         self::assertInstanceOf(E::class, $e);
         self::assertInstanceOf(F::class, $e->f);
         self::assertSame(9, $e->prop);
