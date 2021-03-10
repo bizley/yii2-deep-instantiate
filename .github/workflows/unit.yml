@@ -1,4 +1,4 @@
-name: Unit Tests
+name: Unit Testing
 
 on:
   pull_request:
@@ -8,12 +8,12 @@ on:
 
 jobs:
   Tests:
-    name: PHP ${{ matrix.php }} + SQLite
+    name: PHP ${{ matrix.php }} + PHPUnit
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.0', '7.1', '7.2', '7.3', '7.4', '8.0']
+        php: ['7.0', '7.1', '7.2', '7.3', '7.4']
 
     steps:
       - name: Checkout
@@ -23,7 +23,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: mbstring, intl, sqlite
           coverage: none
         env:
           COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
